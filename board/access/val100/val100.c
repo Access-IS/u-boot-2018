@@ -518,7 +518,7 @@ static enum board_type board_type(void)
 
 	gpio_direction_input(IMX_GPIO_NR(1, 24));
 	val3 = gpio_get_value(IMX_GPIO_NR(1, 24));
-	if (val0 == 1) 
+	if (val0 == 0 && val1 == 1 && val2 == 0 && val3 ==0)
 		return VAL100;
 	
 	return UNKNOWN;
@@ -552,7 +552,7 @@ int checkboard(void)
 {
 	switch (board_type()) {
 	case VAL100:
-		puts("Board: MX6 VAL100");
+		puts("Board: AccesIS VAL100");
 		break;
 
 	case UNKNOWN:
