@@ -1,0 +1,12 @@
+if TARGET_VAL100
+
+config SYS_BOARD
+	default "val100"
+
+config SYS_VENDOR
+	default "access"
+
+config SYS_CONFIG_NAME
+	default "val100"
+
+endif

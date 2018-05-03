@@ -1,0 +1,6 @@
+VAL100 BOARD
+M:	Fabio Estevam <fabio.estevam@nxp.com>
+S:	Maintained
+F:	board/access/val100/
+F:	include/configs/val100.h
+F:	configs/val100_defconfig
