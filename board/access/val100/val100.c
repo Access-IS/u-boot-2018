@@ -60,10 +60,8 @@ DECLARE_GLOBAL_DATA_PTR;
 #define USB_H1_VBUS	IMX_GPIO_NR(1, 0)
 
 enum board_type {
-	CUBOXI          = 0x00,
-	HUMMINGBOARD    = 0x01,
-	HUMMINGBOARD2   = 0x02,
-	UNKNOWN         = 0x03,
+	VAL100          = 0x01,
+	UNKNOWN			= 0x00,
 };
 
 #define MEM_STRIDE 0x4000000
@@ -143,10 +141,11 @@ static iomux_v3_cfg_t const usdhc3_pads[] = {
 };
 
 static iomux_v3_cfg_t const board_detect[] = {
-	/* These pins are for sensing if it is a CuBox-i or a HummingBoard */
-	IOMUX_PADS(PAD_KEY_ROW1__GPIO4_IO09  | MUX_PAD_CTRL(UART_PAD_CTRL)),
-	IOMUX_PADS(PAD_EIM_DA4__GPIO3_IO04   | MUX_PAD_CTRL(UART_PAD_CTRL)),
-	IOMUX_PADS(PAD_SD4_DAT0__GPIO2_IO08  | MUX_PAD_CTRL(UART_PAD_CTRL)),
+	/* IO pins assigned for borad  type detect */
+	IOMUX_PADS(PAD_EIM_WAIT__GPIO5_IO00   | MUX_PAD_CTRL(UART_PAD_CTRL)),
+	IOMUX_PADS(PAD_SD4_CLK__GPIO7_IO10   | MUX_PAD_CTRL(UART_PAD_CTRL)),
+	IOMUX_PADS(PAD_SD4_CMD__GPIO7_IO09  | MUX_PAD_CTRL(UART_PAD_CTRL)),
+	IOMUX_PADS(PAD_ENET_RX_ER__GPIO1_IO24 | MUX_PAD_CTRL(UART_PAD_CTRL)),
 };
 
 static iomux_v3_cfg_t const som_rev_detect[] = {
@@ -497,40 +496,33 @@ int board_init(void)
 
 static enum board_type board_type(void)
 {
-	int val1, val2, val3;
+	int val0, val1, val2, val3;
 
 	SETUP_IOMUX_PADS(board_detect);
 
 	/*
 	 * Machine selection -
-	 * Machine      val1, val2, val3
-	 * ----------------------------
-	 * HB2            x     x    0
-	 * HB rev 3.x     x     0    x
-	 * CBi            0     1    x
-	 * HB             1     1    x
+	 * Machine		val0	val1	val2	val3
+	 * -----------------------------------------
+	 * VAL100          0		1		0		0
 	 */
 
-	gpio_direction_input(IMX_GPIO_NR(2, 8));
-	val3 = gpio_get_value(IMX_GPIO_NR(2, 8));
+	gpio_direction_input(IMX_GPIO_NR(5, 0));
+	val0 = gpio_get_value(IMX_GPIO_NR(5, 0));
 
-	if (val3 == 0)
-		return HUMMINGBOARD2;
+	gpio_direction_input(IMX_GPIO_NR(7, 10));
+	val1 = gpio_get_value(IMX_GPIO_NR(7, 10));
 
-	gpio_direction_input(IMX_GPIO_NR(3, 4));
-	val2 = gpio_get_value(IMX_GPIO_NR(3, 4));
+	gpio_direction_input(IMX_GPIO_NR(7, 9));
+	val2 = gpio_get_value(IMX_GPIO_NR(7, 9));
 
-	if (val2 == 0)
-		return HUMMINGBOARD;
+	gpio_direction_input(IMX_GPIO_NR(1, 24));
+	val3 = gpio_get_value(IMX_GPIO_NR(1, 24));
+	if (val0 == 1) 
+		return VAL100;
+	
+	return UNKNOWN;
 
-	gpio_direction_input(IMX_GPIO_NR(4, 9));
-	val1 = gpio_get_value(IMX_GPIO_NR(4, 9));
-
-	if (val1 == 0) {
-		return CUBOXI;
-	} else {
-		return HUMMINGBOARD;
-	}
 }
 
 static bool is_rev_15_som(void)
@@ -559,15 +551,10 @@ static bool has_emmc(void)
 int checkboard(void)
 {
 	switch (board_type()) {
-	case CUBOXI:
-		puts("Board: MX6 Cubox-i");
+	case VAL100:
+		puts("Board: MX6 VAL100");
 		break;
-	case HUMMINGBOARD:
-		puts("Board: MX6 HummingBoard");
-		break;
-	case HUMMINGBOARD2:
-		puts("Board: MX6 HummingBoard2");
-		break;
+
 	case UNKNOWN:
 	default:
 		puts("Board: Unknown\n");
@@ -610,15 +597,10 @@ int board_late_init(void)
 board_type:
 
 	switch (board_type()) {
-	case CUBOXI:
-		env_set("board_name", "CUBOXI");
+	case VAL100:
+		env_set("board_name", "VAL100");
 		break;
-	case HUMMINGBOARD:
-		env_set("board_name", "HUMMINGBOARD");
-		break;
-	case HUMMINGBOARD2:
-		env_set("board_name", "HUMMINGBOARD2");
-		break;
+	
 	case UNKNOWN:
 	default:
 		env_set("board_name", "CUBOXI");
