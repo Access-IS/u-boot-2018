@@ -55,10 +55,6 @@
 
 #define BOOT_TARGET_DEVICES(func) 
 
-#include <config_distro_bootcmd.h>
-
-
-
 
 /* Physical Memory Map */
 #define CONFIG_NR_DRAM_BANKS           1
@@ -74,7 +70,7 @@
 /* Environment organization */
 #define CONFIG_ENV_SIZE			0x40000 /* 256k */
 #define CONFIG_ENV_IS_IN_SPI_FLASH
-#define CONFIG_ENV_OFFSET		0xC0000	/*4th sector */
+#define CONFIG_ENV_OFFSET		0x40000	/*2nd sector */
 #define CONFIG_ENV_SECT_SIZE		0x40000	/* 256k */
 
 /* SPI */
