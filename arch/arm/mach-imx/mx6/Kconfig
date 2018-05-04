@@ -92,6 +92,21 @@ choice
 	prompt "MX6 board select"
 	optional
 
+config TARGET_SWALLOW
+	bool "Access-IS swallow"
+	select BOARD_LATE_INIT
+	select MX6DL
+
+config TARGET_S16
+	bool "Access-IS s16 - single dram"
+	select BOARD_LATE_INIT
+	select MX6DL
+
+config TARGET_ATR200B
+	bool "Access-IS ATR200B"
+	select BOARD_LATE_INIT
+	select MX6DL
+
 config TARGET_ADVANTECH_DMS_BA16
 	bool "Advantech dms-ba16"
 	select BOARD_LATE_INIT
@@ -492,6 +507,9 @@ source "board/liebherr/mccmon6/Kconfig"
 source "board/logicpd/imx6/Kconfig"
 source "board/seco/Kconfig"
 source "board/solidrun/mx6cuboxi/Kconfig"
+source "board/access/swallow/Kconfig"
+source "board/access/s16/Kconfig"
+source "board/access/atr200b/Kconfig"
 source "board/access/val100/Kconfig"
 source "board/technexion/pico-imx6ul/Kconfig"
 source "board/tbs/tbs2910/Kconfig"
