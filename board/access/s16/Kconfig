@@ -1,0 +1,12 @@
+if TARGET_S16
+
+config SYS_BOARD
+	default "s16"
+
+config SYS_VENDOR
+	default "access"
+
+config SYS_CONFIG_NAME
+	default "s16"
+
+endif

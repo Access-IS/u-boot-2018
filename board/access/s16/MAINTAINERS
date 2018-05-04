@@ -1,0 +1,6 @@
+MX6CUBOXI BOARD
+M:	Fabio Estevam <fabio.estevam@nxp.com>
+S:	Maintained
+F:	board/access/s16/
+F:	include/configs/s16.h
+F:	configs/s16_defconfig

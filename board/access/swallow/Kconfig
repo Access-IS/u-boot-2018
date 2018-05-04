@@ -1,0 +1,12 @@
+if TARGET_SWALLOW
+
+config SYS_BOARD
+	default "swallow"
+
+config SYS_VENDOR
+	default "access"
+
+config SYS_CONFIG_NAME
+	default "swallow"
+
+endif

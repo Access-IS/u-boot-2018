@@ -1,0 +1,12 @@
+if TARGET_ATR200B
+
+config SYS_BOARD
+	default "atr200b"
+
+config SYS_VENDOR
+	default "access"
+
+config SYS_CONFIG_NAME
+	default "atr200b"
+
+endif

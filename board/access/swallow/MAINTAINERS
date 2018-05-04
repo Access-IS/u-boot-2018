@@ -1,0 +1,6 @@
+MX6CUBOXI BOARD
+M:	Fabio Estevam <fabio.estevam@nxp.com>
+S:	Maintained
+F:	board/access/swallow/
+F:	include/configs/swallow.h
+F:	configs/swallow_defconfig

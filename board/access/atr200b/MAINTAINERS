@@ -1,0 +1,6 @@
+MX6CUBOXI BOARD
+M:	Fabio Estevam <fabio.estevam@nxp.com>
+S:	Maintained
+F:	board/access/atr200b/
+F:	include/configs/atr200b.h
+F:	configs/atr200b_defconfig
