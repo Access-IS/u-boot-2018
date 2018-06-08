@@ -63,6 +63,7 @@ const struct spi_flash_info spi_flash_ids[] = {
 	{"en25s64",	   INFO(0x1c3817, 0x0, 64 * 1024,   128, 0) },
 #endif
 #ifdef CONFIG_SPI_FLASH_GIGADEVICE	/* GIGADEVICE */
+	{"gd25q16c",	   INFO(0xc84015, 0x0, 64 * 1024,    32, SECT_4K) },
 	{"gd25q64b",	   INFO(0xc84017, 0x0, 64 * 1024,   128, SECT_4K) },
 	{"gd25lq32",	   INFO(0xc86016, 0x0, 64 * 1024,    64, SECT_4K) },
 #endif
@@ -71,6 +72,10 @@ const struct spi_flash_info spi_flash_ids[] = {
 	{"is25lp032",	   INFO(0x9d6016, 0x0, 64 * 1024,    64, 0) },
 	{"is25lp064",	   INFO(0x9d6017, 0x0, 64 * 1024,   128, 0) },
 	{"is25lp128",	   INFO(0x9d6018, 0x0, 64 * 1024,   256, 0) },
+
+	{"is25wp032",	   INFO(0x9d7016, 0x0, 64 * 1024,    64, SECT_4K) },
+	{"is25wp064",	   INFO(0x9d7017, 0x0, 64 * 1024,   128, SECT_4K) },
+	{"is25wp128",	   INFO(0x9d7018, 0x0, 64 * 1024,   256, SECT_4K) },
 #endif
 #ifdef CONFIG_SPI_FLASH_MACRONIX	/* MACRONIX */
 	{"mx25l2006e",	   INFO(0xc22012, 0x0, 64 * 1024,     4, 0) },
@@ -99,9 +104,12 @@ const struct spi_flash_info spi_flash_ids[] = {
 	{"s25fl128p_64k",  INFO(0x012018, 0x0301,  64 * 1024,   256, RD_FULL | WR_QPP) },
 	{"s25fl032p",	   INFO(0x010215, 0x4d00,  64 * 1024,    64, RD_FULL | WR_QPP) },
 	{"s25fl064p",	   INFO(0x010216, 0x4d00,  64 * 1024,   128, RD_FULL | WR_QPP) },
+	{"s25fl064l",	   INFO(0x016017, 0x0,  64 * 1024,   128, RD_FULL | WR_QPP | SECT_4K) },
 	{"s25fl128s_256k", INFO(0x012018, 0x4d00, 256 * 1024,    64, RD_FULL | WR_QPP) },
 	{"s25fl128s_64k",  INFO(0x012018, 0x4d01,  64 * 1024,   256, RD_FULL | WR_QPP) },
+	{"s25fl128l",	   INFO(0x016018, 0x0,  64 * 1024,   256, RD_FULL | WR_QPP | SECT_4K ) },
 	{"s25fl256s_256k", INFO(0x010219, 0x4d00, 256 * 1024,   128, RD_FULL | WR_QPP) },
+	{"s25fl256s_64k",  INFO(0x010219, 0x4d01,  64 * 1024,   512, RD_FULL | WR_QPP) },
 	{"s25fs256s_64k",  INFO6(0x010219, 0x4d0181, 64 * 1024, 512, RD_FULL | WR_QPP | SECT_4K) },
 	{"s25fl256s_64k",  INFO(0x010219, 0x4d01,  64 * 1024,   512, RD_FULL | WR_QPP) },
 	{"s25fs512s",      INFO6(0x010220, 0x4d0081, 128 * 1024, 512, RD_FULL | WR_QPP | SECT_4K) },
