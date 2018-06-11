@@ -126,6 +126,7 @@ void setup_pwm_led (void) {
 		
 }
 
+#if 0
 // ethernet
 static iomux_v3_cfg_t const enet_pads[] = {
 	IOMUX_PADS(PAD_ENET_MDIO__ENET_MDIO | MUX_PAD_CTRL(ENET_PAD_CTRL)),
@@ -151,7 +152,6 @@ static iomux_v3_cfg_t const enet_pads[] = {
 	IOMUX_PADS(PAD_RGMII_RD3__RGMII_RD3 | MUX_PAD_CTRL(ENET_PAD_CTRL)),
 	IOMUX_PADS(PAD_RGMII_RX_CTL__RGMII_RX_CTL | MUX_PAD_CTRL(ENET_PAD_CTRL_PD)),
 };
-
 
 static void setup_iomux_enet(void)
 {
@@ -209,7 +209,7 @@ free_bus:
 	free(bus);
 	return ret;
 }
-
+#endif 
 
 
 int board_early_init_f(void)
