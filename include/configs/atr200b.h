@@ -51,7 +51,11 @@
 
 #define CONFIG_EXTRA_ENV_SETTINGS "" 
 
-#define CONFIG_BOOTCOMMAND "sf probe; sf read 0x12000000 0xc0000 $kernelsize; sf read 0x18000000 0x80000 $dtbsize; bootz 0x12000000 - 0x18000000" 
+#define CONFIG_BOOTCOMMAND "if test -x $kernelsize; "\
+                    "then sf probe; sf read 0x12000000 0xc0000 $kernelsize; " \
+                    "sf read 0x18000000 0x80000 $dtbsize;" \
+                    "bootz 0x12000000 - 0x18000000 ;" \
+                    "else bootz 0x12000000 - 0x18000000 ;fi" 
 
 #define BOOT_TARGET_DEVICES(func) 
 
