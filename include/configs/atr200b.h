@@ -49,7 +49,7 @@
 
 #define CONFIG_ENV_VARS_UBOOT_RUNTIME_CONFIG
 
-#define CONFIG_EXTRA_ENV_SETTINGS "" 
+#define CONFIG_EXTRA_ENV_SETTINGS "mode=" "1"
 
 #define CONFIG_BOOTCOMMAND "if test -x $kernelsize; "\
                     "then sf probe; sf read 0x12000000 0xc0000 $kernelsize; " \
