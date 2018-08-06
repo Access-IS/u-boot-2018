@@ -621,7 +621,8 @@ board_type:
 		env_set("has_emmc", "yes");
 
 #endif
-
+    env_set("rescue", "mmc dev 0;ext4load mmc 0 0x12000000 zImage-rescue;ext4load mmc 0 0x18000000 imx6q-val130.dtb;bootz 0x12000000 - 0x18000000");
+    
 	return 0;
 }
 
